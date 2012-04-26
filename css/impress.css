@@ -30,7 +30,7 @@
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
+a, abbr, acronym, address, big, cite,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
@@ -47,6 +47,35 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+}
+
+h1 {
+    margin-bottom:20px;
+}
+
+h2 {
+    font-size:130%;
+}
+
+code {
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    background: rgba(255,  255,  255,  0.5);
+    display: block;
+    box-shadow: 1px 0px 1px rgba(255, 255, 255, 1) inset;
+    font-size: 92%;
+    padding:0 15px 0;
+}
+
+div.step p code:first-child {
+    margin-top:20px;
+    border-top:1px solid #ccc;
+    box-shadow: 1px 1px 1px rgba(255, 255, 255, 1) inset;
+    padding:15px 15px 0;
+}
+
+div.step p code:last-child {
+    padding:0px 15px 15px;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -127,7 +156,9 @@ a {
 
 a:hover,
 a:focus {
+    /*
     background: rgba(255,255,255,1);
+    */
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
@@ -242,7 +273,7 @@ a:focus {
 }
 
 .slide-title q {
-    display: block;
+    /display: block;
     font-size: 50px;
     line-height: 72px;
 
@@ -292,6 +323,7 @@ a:focus {
     white-space: nowrap;
 }
 
+
 /*
     And now we start to style each step separately.
 
@@ -328,6 +360,7 @@ a:focus {
     -ms-transform:     translateZ(50px);
     -o-transform:      translateZ(50px);
     transform:         translateZ(50px);
+    margin-bottom:20px;
 }
 
 #title .footnote {

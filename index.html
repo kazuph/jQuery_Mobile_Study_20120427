@@ -8,8 +8,10 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
     <link href="css/impress.css" rel="stylesheet" />
     <link rel="shortcut icon" href="favicon.png" />
+    <script src="src/prettify.js" type="text/javascript"></script>
+    <link href="src/prettify.css" rel="stylesheet" type="text/css"/>
 </head>
-<body class="impress-not-supported">
+<body class="impress-not-supported" onload="prettyPrint()">
 <div class="fallback-message">
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
@@ -17,7 +19,7 @@
 <div id="impress">
 
 <div id="title" class="step" data-y="0" data-x="0">
-<h1>jQuery Mobileでやるスマフォ最適化</h1>
+<h1>jQuery Mobileで</br>やるスマフォ最適化</h1>
 
 <p>@kazuph</p>
 
@@ -33,9 +35,8 @@
 <li>使用言語：
 <ul>
 <li>主にPerl(そんなころもありました)</li>
-<li>Java(Android)</li>
-<li>Objective-C(iPhone)</li>
-<li>JavaScript(Processing.js, easelJS)</li>
+<li>今はJava(Android), Objective-C(iPhone)</li>
+<li>仕事以外では何故かJavaScript(Processing.js, easelJS)</li>
 </ul></li>
 <li>仕様エディタ:
 <ul>
@@ -62,8 +63,142 @@
 <ul>
 <li>https://github.com/yoshiki/markdown2impress</li>
 </ul></li>
-<li>以上を実際には書き換えて使っていますYO( ･`д･´)</li>
+<li>実際にはこれらを書き換えて使っていますYO( ･`д･´)</li>
 </ul>
+
+</div>
+<div class="step" data-y="0" data-x="3600">
+<h2>Agenda（15分）</h2>
+
+<ul>
+<li>jQM(jQuery Mobile)ってなに？</li>
+<li>どこがすごいの？</li>
+<li>なにがダメなの？</li>
+<li>じゃあどうすればいいの？</li>
+</ul>
+
+</div>
+<div class="step" data-y="0" data-x="4800">
+<h1>jQuery Mobile</h1>
+
+<p>beyonde bad know-how
+<img src="http://jquerymobile.com/wp-content/uploads/2011/06/jquery-mobile-devices-beta.png" alt="jQuery Mobile" /></p>
+
+</div>
+<div class="step" data-y="800" data-x="0">
+<h2>概要</h2>
+
+<ul>
+<li>簡単にスマフォ向けのデザインを適用できる</li>
+<li>簡単にスマフォアプリみたいな挙動を付加するすることができる</li>
+<li>HTMLの初心者でもある程度簡単に実装が可能</li>
+<li>※ただしCSSとJSの知識がないと60点のサイトしかつくれない→まさに俺</li>
+</ul>
+
+</div>
+<div class="step" data-y="800" data-x="1200">
+<h2>スマフォ向けデザイン</h2>
+
+<ul>
+<li>スマフォでの利便性</li>
+</ul>
+
+</div>
+<div class="step" data-y="800" data-x="2400">
+<h2>デザイン</h2>
+
+<ul>
+<li>ヘッダ・フッタ</li>
+<li>リスト</li>
+<li>ダイアログ</li>
+<li>他にも超たくさん</li>
+<li><a href="http://jquerymobile.com/demos/1.1.0/">本家サイトによるDEMO</a></li>
+</ul>
+
+</div>
+<div class="step" data-y="800" data-x="3600">
+<h2>導入方法</h2>
+
+<p>```
+<!-- 以下をheadに追加 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" /></p>
+
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+
+<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+<p>```</p>
+
+</div>
+<div class="step" data-y="800" data-x="4800">
+<h2>魔法の呪文(Zencoding)</h2>
+
+<p><code class="prettyprint">
+html:5&gt;div[data-role=page]&gt;(div[data-role=header][data-position=fixed]&gt;h1{jQueryMobile}))+(ul[data-role=listview]&gt;li[data-role=list-divider]{HOGE}+li*30&gt;legend+a{(」・ω・)」うー！(／・ω・)／にゃー！}&gt;img[src=praykazu.png][width=100px])+(div[data-role=footer][data-position=fixed]&gt;h1{I am Footer})
+</code></p>
+
+<ul>
+<li>スマフォらしい挙動
+<ul>
+<li>スライド</li>
+<li>移動するヘッダ（6min）</li>
+</ul></li>
+<li>デザインおえー
+<ul>
+<li>見た目がどれも一緒じゃない？</li>
+<li>デザインロール</li>
+<li>CSS適用</li>
+<li>実際に弊社のプロダクト紹介（10min)</li>
+<li>他jQMを使っているサイト</li>
+</ul></li>
+<li>挙動おえー
+<ul>
+<li>とりあえずajax-false?</li>
+<li>他に使えそうな便利な関数紹介</li>
+<li>Ajaxの時につかう、デザイン適用関数</li>
+</ul></li>
+<li>なんか最後に面白そうな話（20min）</li>
+</ul>
+
+</div>
+<div class="step" data-y="1600" data-x="0">
+<h2>jQMの注意点</h2>
+
+</div>
+<div class="step" data-y="1600" data-x="1200">
+<h2>Ajaxを使わないようにする方法もあるが…</h2>
+
+<ul>
+<li>設定方法
+<code class="prettyprint">
+jQuery(document).bind("mobileinit", function(){
+</code>
+<code class="prettyprint">
+　　jQuery.mobile.ajaxEnabled = false;
+</code>
+<code class="prettyprint">
+　　jQuery.mobile.ajaxLinksEnabled = false;
+</code>
+<code class="prettyprint">
+　　jQuery.mobile.ajaxFormsEnabled = false;
+</code>
+<code class="prettyprint">
+　　jQuery.mobile.hashListeningEnabled = false;
+</code>
+<code class="prettyprint">
+});
+</code></li>
+<li>実際にはもっとちゃんとした解決策がある（らしい）
+*</li>
+</ul>
+
+</div>
+<div class="step" data-y="1600" data-x="2400">
+<h2>便利ツール</h2>
+
+<p><a href="http://www.codiqa.com/">GUIでコーディングできる『Codiqa』</a>
+<img src="http://codiqa.com/static/images/v3/home/cta_image_right_builder.png" alt="Codiqa" />
+<a href="http://jquerymobile.com/themeroller/">GUIでcssを変更できる『ThemeRoller for jQuery Mobile』</a></p>
 
 </div>
 
