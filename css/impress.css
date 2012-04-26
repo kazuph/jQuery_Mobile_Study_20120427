@@ -67,6 +67,14 @@ code {
     padding:0 15px 0;
 }
 
+pre {
+    font-size: 65%;
+}
+
+div.gist-meta {
+    font-size: 25%;
+}
+
 div.step p code:first-child {
     margin-top:20px;
     border-top:1px solid #ccc;
