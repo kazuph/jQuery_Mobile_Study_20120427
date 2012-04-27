@@ -24,7 +24,7 @@
  * impress.js
   * [https://github.com/bartaz/impress.js/](https://github.com/bartaz/impress.js/)
  * markdown2impress
-  * https://github.com/yoshiki/markdown2impress
+  * [https://github.com/yoshiki/markdown2impress](https://github.com/yoshiki/markdown2impress)
  * 実際にはこれらを書き換えて使っていますYO( ･`д･´)
 
 jQuery Mobile
@@ -34,7 +34,7 @@ beyonde bad know-how
 
 Agenda（15分）
 ----------------
- * jQM(jQuery Mobile)(5分)
+ * jQM(jQuery Mobile)
  * スタートアップガイド
  * 60点のその先
 
@@ -54,7 +54,9 @@ jQM(jQuery Mobile)とは
 ------------------
  * 正直リファレンスを見るのが一番の近道
   * [本家サイトによるDEMO](http://jquerymobile.com/demos/1.1.0/)
+ * 新機能の紹介
   * [jQM1.1の新機能](http://screw-axis.com/2012/04/20/jquery-mobile-1-1-0/)
+ * 導入事例
   * [国内での適用事例](http://ascii.jp/elem/000/000/674/674677/)
 
 スタートアップガイド
@@ -85,14 +87,15 @@ DEMO
 [GUIでコーディングできる『Codiqa』](http://www.codiqa.com/)
 ![Codiqa](http://codiqa.com/static/images/v3/home/cta_image_right_builder.png)
 
-ほら簡単でしょ？
+簡単かも！
 --------------
 
-でもデザインが・・・
+デザイン
 -----------------
  * HTMLしかいじれないとどれも同じ見た目になってしまう
- * でもデザイン性のあるCSSを書くのは敷居が高い
-  * デザインロールという解決策もある
+ * jQMで実現できるレイアウトに制限があるので基本的にないものはCSSで実装するしかない
+ * デザイン性のあるCSSを書くのは敷居が高い
+  * デザインロールというtoolもある
    * [GUIでcssを変更できる『ThemeRoller for jQuery Mobile』](http://jquerymobile.com/themeroller/)
 
 60点のその先
@@ -102,19 +105,19 @@ DEMO
 
 独自にCSSを適用する
 -----------------
- * 実際に弊社のプロダクトの変わっていく様
+ * 実際に弊社のプロダクト紹介
 
 伝家の宝刀<br/>でーたえーじゃっくすふぉーるす！
 ------------------
+ * という名のバッドノウハウ
  * jQMを使うとしばしばよくわからないバグが発生する
   * jQueryMobileでAjaxスライドする実装をしたら元々動いていたjsがbindされまくって挙動がおかしくなる
- * 何かJSでトラブってたらとりあえずaタグやformに以下を追加・・・?
+ * ネットで検索すると・・・
+  * 何かJSでトラブってたらとりあえずaタグやformに以下を追加・・・?
 ```
 data-ajax="false"
 ```
- * 問題がこれで解消されることが多いが根本的な解決になっていない
- * スライド遷移が使えなくなるのでjQMらしさがそこなわれる
- * jQMを使う意味を見失う
+ * これで問題が解消されることが多いが根本的な解決になっていない
 
 そもそもAjaxを使わないようにする方法もあるが…
 ------------------
@@ -124,9 +127,11 @@ jQuery(document).bind("mobileinit", function(){
 　　jQuery.mobile.ajaxEnabled = false;
 });
 ```
-もっと根本的に解決したい！
+ * スライド遷移が使えなくなるのでjQMらしさがそこなわれる
+ * ていうかこれを無効にしたらjQMを使う意味を見失う(他のデザインだけのフレームワークでいい！)
+ * もっと根本的に解決したい！
 
-jQMでのルールを覚える
+jQM独自のメソッドを覚える(一例)
 -----------------
  * jQueryMobile != jQuery
  * jQM用に用意されたメソッド(関数｜手段)がたくさんあるよ！
@@ -137,8 +142,43 @@ $(document).delegate('#page1',  'pageshow',  function(){
 });
 ```
   * Ajaxで要素を追加するときに、jQMのcssを適用する[関数](http://hisasann.com/housetect/2011/06/jquerymobile_1.html)
-  * 画面を予め読み込んでおく[関数](http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/)
-  * 生成されたDOMをキャッシュしておく[関数]()
+```
+$('ul').listview('refresh');
+```
+ * jQueryMobileによって引き起こされる問題はjQueryMobileで解決できる!
+
+パフォーマンス対策
+-------------------
+ * Ajaxの遷移が重いと感じる場合は単純にアニメーションだけなしにできる
+```
+$(document).bind('mobileinit',  function(){
+```
+```
+　　$.mobile.defaultPageTransition = 'none';
+```
+```
+});
+```
+ * 通常のクリック関数はダブルクリックの判定を待つため挙動が遅い
+  * vclickを用いる
+```
+$(document).delegate('a', 'vclick', function(e){
+  e.preventDefault();
+  var link = $(this);
+  $.mobile.changePage(link.attr('href'), {
+    transition: link.jqmData('transition')
+  });
+});
+```
+ * 画面を予め読み込んでおく機能[(プリフェッチ)](http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/)
+ * 生成されたDOMをキャッシュしておく機能[(DOMキャッシュ)](http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/)
+
+まとめ
+-------------------
+ * jQMを使えばHTML初心者でもスマフォ用サイトのコーディングができる
+ * jQM標準のレイアウトには限界があるので潔くCSSを書く
+ * バッドノウハウを使う前にjQMが解決策を提示してないかを調査する
+ * パフォーマンスに関しても通常のサイトよりもい向上する可能性の方が大きい
 
 続きはWebで!
 --------------------

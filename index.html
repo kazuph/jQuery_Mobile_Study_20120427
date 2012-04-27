@@ -109,14 +109,12 @@
 <h2>デザイン &amp; UI</h2>
 
 <ul>
-<li>ヘッダ・フッタ</li>
-<li>リスト</li>
-<li>ダイアログ</li>
-<li>スライド</li>
-<li>他にも超たくさん</li>
+<li>正直リファレンスを見るのが一番の近道
+<ul>
 <li><a href="http://jquerymobile.com/demos/1.1.0/">本家サイトによるDEMO</a></li>
 <li><a href="http://screw-axis.com/2012/04/20/jquery-mobile-1-1-0/">jQM1.1の新機能</a></li>
 <li><a href="http://ascii.jp/elem/000/000/674/674677/">国内での適用事例</a></li>
+</ul></li>
 </ul>
 
 </div>
@@ -162,11 +160,7 @@
 
 </div>
 <div class="step" data-y="1600" data-x="4800">
-<h2>ほら簡単でしょ？</h2>
-
-</div>
-<div class="step" data-y="2400" data-x="0">
-<h2>でもデザインが・・・</h2>
+<h2>デザイン</h2>
 
 <ul>
 <li>HTMLしかいじれないとどれも同じ見た目になってしまう</li>
@@ -176,6 +170,10 @@
 <li><a href="http://jquerymobile.com/themeroller/">GUIでcssを変更できる『ThemeRoller for jQuery Mobile』</a></li>
 </ul></li>
 </ul>
+
+</div>
+<div class="step" data-y="2400" data-x="0">
+<h2>簡単かも！</h2>
 
 </div>
 <div class="step" data-y="2400" data-x="1200">
@@ -191,7 +189,7 @@
 <h2>独自にCSSを適用する</h2>
 
 <ul>
-<li>実際に弊社のプロダクトの変わっていく様</li>
+<li>実際に弊社のプロダクト紹介</li>
 </ul>
 
 </div>
@@ -199,17 +197,19 @@
 <h2>伝家の宝刀<br/>でーたえーじゃっくすふぉーるす！</h2>
 
 <ul>
+<li>伝家の宝刀という名のバッドノウハウ</li>
 <li>jQMを使うとしばしばよくわからないバグが発生する
 <ul>
 <li>jQueryMobileでAjaxスライドする実装をしたら元々動いていたjsがbindされまくって挙動がおかしくなる</li>
 </ul></li>
+<li>ネットで検索すると・・・
+<ul>
 <li>何かJSでトラブってたらとりあえずaタグやformに以下を追加・・・?
 <code class="prettyprint">
 data-ajax="false"
 </code></li>
-<li>問題がこれで解消されることが多いが根本的な解決になっていない</li>
-<li>スライド遷移が使えなくなるのでjQMらしさがそこなわれる</li>
-<li>jQMを使う意味を見失う</li>
+</ul></li>
+<li>これで問題が解消されることが多いが根本的な解決になっていない</li>
 </ul>
 
 </div>
@@ -222,13 +222,15 @@ data-ajax="false"
 jQuery(document).bind("mobileinit", function(){
 　　jQuery.mobile.ajaxEnabled = false;
 });
-</code>
-もっと根本的に解決したい！</li>
+</code></li>
+<li>スライド遷移が使えなくなるのでjQMらしさがそこなわれる</li>
+<li>ていうかこれを無効にしたらjQMを使う意味を見失う(他のデザインだけのフレームワークでいい！)</li>
+<li>もっと根本的に解決したい！</li>
 </ul>
 
 </div>
 <div class="step" data-y="3200" data-x="0">
-<h2>jQMでのルールを覚える</h2>
+<h2>jQMでのルールを覚える(一例)</h2>
 
 <ul>
 <li>jQueryMobile != jQuery</li>
@@ -240,14 +242,59 @@ $(document).delegate('#page1',  'pageshow',  function(){
 ///
 });
 </code></li>
-<li>Ajaxで要素を追加するときに、jQMのcssを適用する<a href="http://hisasann.com/housetect/2011/06/jquerymobile_1.html">関数</a></li>
-<li>画面を予め読み込んでおく<a href="http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/">関数</a></li>
-<li>生成されたDOMをキャッシュしておく<a href="">関数</a></li>
+<li>Ajaxで要素を追加するときに、jQMのcssを適用する<a href="http://hisasann.com/housetect/2011/06/jquerymobile_1.html">関数</a>
+<code class="prettyprint">
+$('ul').listview('refresh');
+</code></li>
 </ul></li>
+<li>jQueryMobileによって引き起こされる問題はjQueryMobileで解決できる!</li>
 </ul>
 
 </div>
 <div class="step" data-y="3200" data-x="1200">
+<h2>パフォーマンス</h2>
+
+<ul>
+<li>Ajaxの遷移が重いと感じる場合は単純にアニメーションだけなしにできる
+<code class="prettyprint">
+$(document).bind('mobileinit',  function(){
+</code>
+<code class="prettyprint">
+　　$.mobile.defaultPageTransition = 'none';
+</code>
+<code class="prettyprint">
+});
+</code></li>
+<li>通常のクリック関数はダブルクリックの判定を待つため挙動が遅い
+<ul>
+<li>vclickを用いる
+<code class="prettyprint">
+$(document).delegate('a', 'vclick', function(e){
+e.preventDefault();
+var link = $(this);
+$.mobile.changePage(link.attr('href'), {
+transition: link.jqmData('transition')
+});
+});
+</code></li>
+</ul></li>
+<li>画面を予め読み込んでおく機能<a href="http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/">(プリフェッチ)</a></li>
+<li>生成されたDOMをキャッシュしておく機能<a href="http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/">(DOMキャッシュ)</a></li>
+</ul>
+
+</div>
+<div class="step" data-y="3200" data-x="2400">
+<h2>まとめ</h2>
+
+<ul>
+<li>jQMを使えばHTML初心者でもスマフォ用サイトのコーディングができる</li>
+<li>jQM標準のレイアウトには限界があるので潔くCSSを書く</li>
+<li>バッドノウハウを使う前にjQMが解決策を提示してないかを調査する</li>
+<li>パフォーマンスに関しても通常のサイトよりもい向上する可能性の方が大きい</li>
+</ul>
+
+</div>
+<div class="step" data-y="3200" data-x="3600">
 <h2>続きはWebで!</h2>
 
 <ul>
@@ -256,7 +303,7 @@ $(document).delegate('#page1',  'pageshow',  function(){
 </ul>
 
 </div>
-<div class="step" data-y="3200" data-x="2400">
+<div class="step" data-y="3200" data-x="4800">
 <h1>Any Questions?</h1>
 
 </div>
