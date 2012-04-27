@@ -52,14 +52,10 @@ jQM(jQuery Mobile)とは
 
 デザイン & UI
 ------------------
- * ヘッダ・フッタ
- * リスト
- * ダイアログ
- * スライド
- * 他にも超たくさん
- * [本家サイトによるDEMO](http://jquerymobile.com/demos/1.1.0/)
- * [jQM1.1の新機能](http://screw-axis.com/2012/04/20/jquery-mobile-1-1-0/)
- * [国内での適用事例](http://ascii.jp/elem/000/000/674/674677/)
+ * 正直リファレンスを見るのが一番の近道
+  * [本家サイトによるDEMO](http://jquerymobile.com/demos/1.1.0/)
+  * [jQM1.1の新機能](http://screw-axis.com/2012/04/20/jquery-mobile-1-1-0/)
+  * [国内での適用事例](http://ascii.jp/elem/000/000/674/674677/)
 
 スタートアップガイド
 ==================
