@@ -141,8 +141,8 @@ $(document).delegate('#page1',  'pageshow',  function(){
 });
 ```
   * Ajaxで要素を追加するときに、jQMのcssを適用する[関数](http://hisasann.com/housetect/2011/06/jquerymobile_1.html)
-  * 画面を予め読み込んでおく関数
-  * 生成されたDOMをキャッシュしておく関数
+  * 画面を予め読み込んでおく[関数](http://dev.screw-axis.com/doc/jquery_mobile/components/pages_dialogs/cache/)
+  * 生成されたDOMをキャッシュしておく[関数]()
 
 続きはWebで!
 --------------------
