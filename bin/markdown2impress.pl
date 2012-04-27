@@ -158,7 +158,7 @@ __DATA__
 <div id="impress">
 
 <: $content :>
-    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    <div id="overview" class="step" data-x="2500" data-y="1500" data-scale="7">
     </div>
 </div>
 <script src="js/impress.js"></script>

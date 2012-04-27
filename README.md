@@ -150,6 +150,5 @@ $(document).delegate('#page1',  'pageshow',  function(){
  * [日本語リファレンス](http://dev.screw-axis.com/doc/jquery_mobile/)もかなり充実
 
 
-
 Any Questions?
 ================
